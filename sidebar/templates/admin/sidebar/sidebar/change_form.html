@@ -1,0 +1,39 @@
+{% extends 'admin/change_form.html' %}
+{% load i18n %}
+{% block extrahead %}
+{{block.super}}
+{% load adminmedia %}
+{% load static %}
+<link rel="stylesheet" href="{% admin_media_prefix %}sidebar/css/sidebar.css" type="text/css" />
+
+<script type="text/javascript" src="{% admin_media_prefix %}sidebar/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="{% admin_media_prefix %}sidebar/js/jquery-ui-1.8.17.custom.min.js"></script>
+<script src="{% admin_media_prefix %}sidebar/js/sidebar.js" type="text/javascript"></script>
+<script>
+var csrf_token = '{{csrf_token}}';
+var sidebar_id = {{object_id}};
+var sidebar = '{% url load_sidebar %}';
+var add_url = '{% url sidebar_add %}';
+var update_url = '{% url update_widget %}';
+var reorder_url = '{% url reorder_widget %}';
+var delete_url = '{% url delete_widget %}';
+</script>
+{% endblock %}
+
+{% block after_field_sets %}
+  {% if object_id %}
+    {% load sidebar_tags %}
+    {% sidebar_builder object_id %}
+  {% else %}
+<div id="content-main">
+<fieldset class="module">
+        <div class="form-row save_menu">
+                <div>
+                <input name="_continue" id="save_sidebar_btn" value="{% trans 'Add Widget' %} &raquo;" type="submit">
+                </div>
+        </div>
+</fieldset>
+</div>
+  {% endif %}
+{% endblock %}
+

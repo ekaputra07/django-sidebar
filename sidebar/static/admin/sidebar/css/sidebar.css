@@ -1,0 +1,127 @@
+.module.sidebar{
+    padding:10px;
+}
+.clearfix{
+    clear:both;
+    height:0;
+}
+input#save_sidebar_btn{
+    padding:10px 10px;
+    font-weight:bold;
+    color:#000;
+}
+img.loading, img.widget_loading{
+    display:none;
+}
+
+/*----------------- sidebar Item ---------------------*/
+.sidebar_container{
+    width:30%;
+    float:left;
+    background:#fff;
+    border:1px dashed #ccc;
+    padding:5px;
+    min-height:500px;
+}
+.sidebar_container .sidebar_loading{
+    font-size:12px;
+    color:#555;
+    display:block;
+    padding:5px 0;
+    text-align:center;
+    margin-bottom:5px;
+    display:none;
+}
+.sidebar_container .sidebar_item{
+    padding:5px;
+    background:#eee;
+    border:1px solid #ddd;
+    margin-bottom:5px;
+    cursor:move;
+}
+.sidebar_container .sidebar_item.hovered{
+    border:1px solid #aaa;
+}
+.sidebar_container .sidebar_item h2{
+    background:none;
+    border:none;
+    color:#000;
+}
+.sidebar_container .sidebar_item h2 .title{
+    cursor:move;
+}
+.sidebar_container .sidebar_item h2 .move{
+    display:block;
+    width:7px;
+    height:15px;
+    background:url(../images/icons.png) no-repeat -132px -50px;
+    float:left;
+    margin-right:5px;
+}
+.sidebar_container .sidebar_item h2 a.edit{
+    width:10px;
+    height:8px;
+    background:url(../images/icons.png) no-repeat -67px -20px;
+    float:right;
+    display:block;
+    margin-top:2px;
+}
+.sidebar_container .sidebar_item h2 a.edit.active{
+    background:url(../images/icons.png) no-repeat -2px -20px;
+}
+.sidebar_container .sidebar_item h2 a.delete{
+    width:7px;
+    height:7px;
+    background:url(../images/icons.png) no-repeat -85px -213px;
+    float:right;
+    display:block;
+    margin-top:3px;
+    margin-left:10px;
+}
+.sidebar_container .sidebar_item .sidebar_editor{
+    border-top:1px solid #ddd;
+    padding:5px;
+    background:#f9f9f9;
+    display:none;
+}
+.sidebar_container .sidebar_item .sidebar_editor p label{
+    display:block;
+}
+.sidebar_container .sidebar_item .sidebar_editor .helptext{
+    font-size:11px;
+    color:#888;
+    font-style:italic;
+}
+.sidebar_container .sidebar_item .error{
+    border:1px solid red;
+}
+/*-----------AVAILABLE sidebar STYLE-------------*/
+.sidebar_available{
+    width:65%;
+    float:left;
+    margin-left:10px;
+}
+.sidebar_available .block_sidebar{
+    padding:15px 10px;
+    border-bottom:1px solid #ddd;
+}
+.sidebar_available .block_sidebar:hover{
+    color:green;
+}
+.sidebar_available .block_sidebar .wgt_add{
+    width:24px;
+    height:24px;
+    background:url(../images/add.png) no-repeat;
+    float:left;
+    margin-right:10px;
+    cursor:pointer;
+}
+.sidebar_available .block_sidebar .wgt_title{
+    font-weight:bold;
+}
+.sidebar_available .block_sidebar .wgt_desc{
+    color:#777;
+    font-size:11px;
+}
+
+

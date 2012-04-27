@@ -1,0 +1,29 @@
+{% load i18n %}
+<div id="content-main">
+<fieldset class="module sidebar">
+
+<!-- menu container -->
+<div class="sidebar_container">
+<div class="sidebar_loading">{% trans 'Please wait...' %}</div>
+<div class="sidebars"></div>
+</div>
+<!-- end menu container -->
+
+<!-- menu available -->
+<div class="sidebar_available">
+{% for wgt in available_widgets %}
+    <div class="block_sidebar {{wgt.id}}">
+    <a href="javascript:;" class="wgt_add" title="Add to sidebar" onclick="add_widget('{{wgt.id}}', {{sidebar_id}});"></a>
+    <div class="wgt_info">
+        <div class="wgt_title">{{wgt.name}}</div>
+        <div class="wgt_desc">{{wgt.description}}</div>
+    </div>
+    </div>
+{% endfor %}
+<div class="clearfix"></iv>
+</div>
+<!-- end menu available -->
+
+</fieldset>
+</div>
+

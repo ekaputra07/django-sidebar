@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-26 13:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: forms.py:7
+msgid "Title"
+msgstr "Titel"
+
+#: models.py:6
+msgid "Sidebar Position"
+msgstr "Position der Seitenleiste"
+
+#: models.py:10
+msgid "This is position of the sidebar."
+msgstr "Die ist die Position der Seitenleiste"
+
+#: models.py:19
+msgid "Sidebar"
+msgstr "Seitenleiste"
+
+#: models.py:20
+msgid "Sidebars"
+msgstr "Seitenleisten"
+
+#: templates/admin/sidebar/sidebar/change_form.html:32
+msgid "Add Widget"
+msgstr "Widget hinzufügen"
+
+#: templates/admin/sidebar/sidebar/sidebar_builder.html:7
+msgid "Please wait..."
+msgstr "Bitte warten..."
+
+#: templates/admin/sidebar/sidebar/widgets.html:20
+msgid "Update"
+msgstr "Aktualisieren"

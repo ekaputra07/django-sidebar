@@ -1,0 +1,6 @@
+include README.rst
+include LICENSE
+recursive-include sidebar/static *
+recursive-include sidebar/templates *
+recursive-include sidebar/locale *
+

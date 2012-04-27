@@ -1,5 +1,5 @@
-DJANGO MENUZ
+DJANGO SIDEBAR
 ============
 
-README NOT YET AVAILABLE.
+Dynamic Sidebar creation for Django. Easily create and manage sidebar from Django Admin.
 

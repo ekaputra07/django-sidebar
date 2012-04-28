@@ -35,8 +35,12 @@ class SidebarWidget(object):
         template_text --> template that specified in the code itself.
         template_file --> template is a file.
         """
-        params.update({'widget_title': title})
-        
+        if params:
+            params.update({'widget_title': title})
+        else:
+            params = {}
+            params['widget_title'] = title
+            
         output = ''
         # We need to anticipate if both template_text and template_file defined
         # So, return result of template_text as priority

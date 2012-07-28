@@ -5,9 +5,9 @@ from setuptools import setup, find_packages
 
 setup(
     name = "django-sidebar",
-    version = "0.1.1",
-    url = 'https://bitbucket.org/ekaputra/django-sidebar',
-	download_url = 'https://bitbucket.org/ekaputra/django-sidebar/downloads',
+    version = "0.1.3",
+    url = 'https://github.com/ekaputra07/django-sidebar',
+	download_url = 'https://github.com/ekaputra07/django-sidebar/downloads',
     license = 'BSD',
     description = "Dynamic Sidebar creation for Django. Easily create and manage sidebar from Django Admin.",
     author = 'Eka Putra',

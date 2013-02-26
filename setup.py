@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "django-sidebar",
-    version = "0.1.3",
+    version = "0.2.0",
     url = 'https://github.com/ekaputra07/django-sidebar',
 	download_url = 'https://github.com/ekaputra07/django-sidebar/downloads',
     license = 'BSD',

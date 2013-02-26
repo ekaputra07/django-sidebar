@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('sidebar.views',
     url(r'^sidebar/$', 'ajax_load_widgets', name='load_sidebar'),

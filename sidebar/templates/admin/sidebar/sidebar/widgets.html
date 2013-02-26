@@ -1,4 +1,3 @@
-{% load adminmedia %}
 {% load i18n %}
 {% for widget in used_widgets %}
     <div class="sidebar_item widget_{{widget.id}}" rel="{{widget.id}}">
@@ -18,7 +17,7 @@
     {{ widget.admin_form.help_text}}
     <p>
     <input type="button" name="btn_update" value="{% trans 'Update' %}" onclick="update_widget({{widget.id}});"/>
-    <img src="{% admin_media_prefix %}sidebar/images/loading.gif" class="widget_loading widget_loading_{{widget.id}}"/>
+    <img src="{{STATIC_URL}}admin/sidebar/images/loading.gif" class="widget_loading widget_loading_{{widget.id}}"/>
     </p>
     <!-- end form data -->
     </div>

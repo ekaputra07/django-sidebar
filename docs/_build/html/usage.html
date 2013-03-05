@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Usage &mdash; django-sidebar v0.2.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '#',
+        VERSION:     '0.2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="django-sidebar v0.2.0 documentation" href="index.html" />
+    <link rel="next" title="More on creating sidebar widget" href="more_on_creating_widget.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="more_on_creating_widget.html" title="More on creating sidebar widget"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">django-sidebar v0.2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic">
+<li><p class="first"><strong>Add &#8216;sidebar&#8217; into project INSTALLED_APPS settings</strong>:</p>
+<div class="highlight-python"><pre>#file: settings.py
+
+INSTALLED_APPS = (
+    ...
+    ...
+    'sidebar',
+)</pre>
+</div>
+</li>
+<li><p class="first"><strong>Add sidebar urls into project urls</strong>:</p>
+<div class="highlight-python"><pre>#file urls.py
+urlpatterns = patterns('',
+...
+...
+url(r'sidebar/', include('sidebar.urls')),
+)</pre>
+</div>
+</li>
+<li><p class="first"><strong>Synchronize project database</strong>:</p>
+<div class="highlight-python"><pre>$ python manage.py syncdb</pre>
+</div>
+</li>
+<li><p class="first"><strong>Create a directory called &#8216;sidebar_widgets&#8217; inside the project directory</strong></p>
+<p>It is in the same directory as <em>manage.py</em> file, and <strong>remember</strong> to put an <strong>__init__.py</strong> in it so python can access its content.:</p>
+<div class="highlight-python"><pre>.
+..
+manage.py
+sidebar_widgets/</pre>
+</div>
+</li>
+<li><p class="first"><strong>Add a sidebar settings into &#8216;settings.py&#8217;</strong></p>
+<p>This settings value will determine what <em>sidebar location</em> and <em>sidebar widget</em> are available.</p>
+<p>Each <strong>sidebar location must have unique ID</strong>, this id could be the position of itself on the page.</p>
+<p>And each widget is determined by its <strong>filename without the extension</strong>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Specify the available sidebar location, example:</span>
+<span class="c"># &#39;left&#39; and &#39;right&#39; is the location ID.</span>
+
+<span class="n">AVAILABLE_SIDEBARS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="s">&#39;left&#39;</span><span class="p">,</span> <span class="s">&#39;Left Sidebar&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;right&#39;</span><span class="p">,</span> <span class="s">&#39;Right Sidebar&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c"># Specify the available sidebar widget, example:</span>
+<span class="c"># &#39;promotional_image&#39; is the ID of the widget, taken from its file name without the file extension.</span>
+<span class="c"># the filename of &#39;promotional_image&#39; widget is &#39;promotional_image.py&#39;</span>
+
+<span class="n">AVAILABLE_SIDEBAR_WIDGETS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">&#39;promotional_image&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Create the widget</strong></p>
+<p>To create the widget, you must register the widget in the <em>AVAILABLE_SIDEBAR_WIDGETS</em> settings (described in the step #5 above). <strong>Example :</strong></p>
+</li>
+</ol>
+<blockquote>
+<p>If your sidebar widget named <strong>promotional_image</strong>, create a file inside the <strong>sidebar_widgets</strong> directory and name it <strong>promotional_image.py</strong>.</p>
+<div class="highlight-python"><pre>sidebar_widgets/
+__init__.py
+promotional_image.py</pre>
+</div>
+<p>The widget <em>promotional_image.py</em> would look like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sidebar.base</span> <span class="kn">import</span> <span class="n">SidebarWidget</span><span class="p">,</span> <span class="n">sidebar_widget</span>
+<span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
+
+<span class="n">TEMPLATE</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">{{widget_title}}</span>
+<span class="s">&lt;div class=&quot;side_block&quot;&gt;</span>
+<span class="s">&lt;img src=&quot;{{image}}&quot;/&gt;</span>
+<span class="s">{{text|safe}}</span>
+<span class="s">&lt;/div&gt;</span>
+<span class="s">&quot;&quot;&quot;</span>
+
+<span class="k">class</span> <span class="nc">TextForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">PromotionalImage</span><span class="p">(</span><span class="n">SidebarWidget</span><span class="p">):</span>
+    <span class="n">admin_form</span> <span class="o">=</span> <span class="n">TextForm</span>
+    <span class="n">template_text</span> <span class="o">=</span> <span class="n">TEMPLATE</span>
+
+<span class="c"># register the Widget</span>
+<span class="n">sidebar_widget</span> <span class="o">=</span> <span class="n">PromotionalImage</span><span class="p">(</span><span class="s">&#39;Promotional Image&#39;</span><span class="p">,</span><span class="s">&#39;Display a promotional image with text&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</blockquote>
+<ol class="arabic" start="7">
+<li><p class="first"><strong>Add a place for our sidebar in template</strong></p>
+<p>Open your template file where the sidebar will be rendered, and make a simple call to the sidebar tag:</p>
+<div class="highlight-python"><pre>&lt;!-- this is your template file. eg. index.html --&gt;
+
+&lt;div class="sidebar"&gt;
+
+{% load sidebar_tags %}
+{% get_sidebar 'left' %} or {% get_sidebar 'right' %}
+
+&lt;/div&gt;</pre>
+</div>
+</li>
+</ol>
+<p>Now, start the server, go to Django administration page. On the Sidebars page, open (or create the sidebar if no yet created) the available sidebar and our widget will be available on the widgets list.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="installation.html"
+                                  title="previous chapter">Installation</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="more_on_creating_widget.html"
+                                  title="next chapter">More on creating sidebar widget</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/usage.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="more_on_creating_widget.html" title="More on creating sidebar widget"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             >previous</a> |</li>
+        <li><a href="index.html">django-sidebar v0.2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2013, Eka Putra.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
+    </div>
+  </body>
+</html>

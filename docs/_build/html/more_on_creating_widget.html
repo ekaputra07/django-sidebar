@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>More on creating sidebar widget &mdash; django-sidebar v0.2.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '#',
+        VERSION:     '0.2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="django-sidebar v0.2.0 documentation" href="index.html" />
+    <link rel="prev" title="Usage" href="usage.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="usage.html" title="Usage"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">django-sidebar v0.2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="more-on-creating-sidebar-widget">
+<h1>More on creating sidebar widget<a class="headerlink" href="#more-on-creating-sidebar-widget" title="Permalink to this headline">¶</a></h1>
+<p>Here are our simple sidebar widget,</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># === STEP 1 ===</span>
+<span class="kn">from</span> <span class="nn">sidebar.base</span> <span class="kn">import</span> <span class="n">SidebarWidget</span><span class="p">,</span> <span class="n">sidebar_widget</span>
+<span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
+
+<span class="c"># === STEP 2 ===</span>
+<span class="n">TEMPLATE</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">{{widget_title}}</span>
+<span class="s">&lt;div class=&quot;side_block&quot;&gt;</span>
+<span class="s">&lt;img src=&quot;{{image}}&quot;/&gt;</span>
+<span class="s">{{text|safe}}</span>
+<span class="s">&lt;/div&gt;</span>
+<span class="s">&quot;&quot;&quot;</span>
+
+<span class="c"># === STEP 3 ===</span>
+<span class="k">class</span> <span class="nc">PromotionalForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">()</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">)</span>
+
+<span class="c"># === STEP 4 ===</span>
+<span class="k">class</span> <span class="nc">PromotionalImage</span><span class="p">(</span><span class="n">SidebarWidget</span><span class="p">):</span>
+    <span class="n">admin_form</span> <span class="o">=</span> <span class="n">PromotionalForm</span>
+    <span class="n">template_text</span> <span class="o">=</span> <span class="n">TEMPLATE</span>
+
+<span class="c"># === STEP 5 ===</span>
+<span class="n">sidebar_widget</span> <span class="o">=</span> <span class="n">PromotionalImage</span><span class="p">(</span><span class="s">&#39;Promotional Image&#39;</span><span class="p">,</span><span class="s">&#39;Display a promotional image with text&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>I will break down the above code into 5 parts so we could understand more closely on how it works.</p>
+<ol class="arabic simple">
+<li><strong>STEP 1</strong></li>
+</ol>
+<blockquote>
+<p>We imported <strong>SidebarWidget</strong> base class since every widget created must be based on this class.</p>
+<p>Also imported <strong>sidebar_widget</strong>, this is just an empty variable but will be used to hold an instance of our widget object.</p>
+<p>And we also need to import django form, since widget mostly need inputs in the admin area, which will be based on django form.</p>
+</blockquote>
+<ol class="arabic simple" start="2">
+<li><strong>STEP 2</strong></li>
+</ol>
+<blockquote>
+<p>Widget template is a template that will be rendered to web page and filled with context/data specified in admin area.</p>
+<p>Sidebar widget have two kinds of template that can be used:</p>
+<ul class="simple">
+<li>The <strong>First</strong> is <em>text template</em>, this template mostly will be declared in the same file as the widget code itself.</li>
+<li>The <strong>Second</strong> is <em>file template</em>, this template is a normal django template file, we can put it in our project template directory.</li>
+</ul>
+</blockquote>
+<ol class="arabic simple" start="3">
+<li><strong>STEP 3</strong></li>
+</ol>
+<blockquote>
+<p>Create a data form, this form will be displayed in admin area which you can enter data.</p>
+<p>Whatever field that you create, will be available as a context data in the template. The name of the context is same as the field name.</p>
+<p>Beside all available contexts based on form fields, sidebar template also have one additional context called <strong>widget_title</strong>, this context will hold the widget title you set in the admin area.</p>
+</blockquote>
+<ol class="arabic simple" start="4">
+<li><strong>STEP 4</strong></li>
+</ol>
+<blockquote>
+<p>This is our widget class which must extends the <strong>SidebarWidget</strong> class, available class attributes:</p>
+<ul class="simple">
+<li><strong>admin_form</strong>, (Optional) accept form class that you created in STEP 3.</li>
+<li><strong>template_text</strong> or <strong>template_file</strong>, if you use template file, please provide it with the correct template file name.</li>
+</ul>
+</blockquote>
+<ol class="arabic simple" start="5">
+<li><strong>STEP 5</strong></li>
+</ol>
+<blockquote>
+<p>The last step is to initialize our widget class, and assign it to <em>sidebar_widget</em> variable.</p>
+<p>When initializing our widget class, <strong>it accept two parameters</strong>, the first one is the <strong>name of the widget</strong>. And the second one is the <strong>description of the widget</strong>.</p>
+<p>These two information will be displayed in widget admin of Django-sidebar.</p>
+</blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="usage.html"
+                                  title="previous chapter">Usage</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/more_on_creating_widget.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="usage.html" title="Usage"
+             >previous</a> |</li>
+        <li><a href="index.html">django-sidebar v0.2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2013, Eka Putra.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.4.
+    </div>
+  </body>
+</html>

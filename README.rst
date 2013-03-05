@@ -28,6 +28,6 @@ or::
 
 Usage
 -----
-For the detail about the usage, please refer to Django-sidebar wiki_.
+For more detail about the usage, please refer to the Django-sidebar wiki_.
 
 .. _wiki: https://github.com/ekaputra07/django-sidebar/wiki

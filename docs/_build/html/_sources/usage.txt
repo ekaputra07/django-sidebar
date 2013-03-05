@@ -1,5 +1,5 @@
-Usage
-=====
+Usage example
+=============
 
 1. **Add 'sidebar' into project INSTALLED_APPS settings**::
 
@@ -62,38 +62,38 @@ Usage
 
    To create the widget, you must register the widget in the *AVAILABLE\_SIDEBAR\_WIDGETS* settings (described in the step #5 above). **Example :**
 
-  If your sidebar widget named **promotional_image**, create a file inside the **sidebar_widgets** directory and name it **promotional_image.py**.
-  ::
+   If your sidebar widget named **promotional_image**, create a file inside the **sidebar_widgets** directory and name it **promotional_image.py**.
+   ::
 
-   sidebar_widgets/
-   __init__.py
-   promotional_image.py
+    sidebar_widgets/
+    __init__.py
+    promotional_image.py
 
    
-  The widget *promotional_image.py* would look like this:
-  ::
+   The widget *promotional_image.py* would look like this:
+   ::
 
-   from sidebar.base import SidebarWidget, sidebar_widget
-   from django import forms
+    from sidebar.base import SidebarWidget, sidebar_widget
+    from django import forms
     
-   TEMPLATE = """
-   {{widget_title}}
-   <div class="side_block">
-   <img src="{{image}}"/>
-   {{text|safe}}
-   </div>
-   """
+    TEMPLATE = """
+    {{widget_title}}
+    <div class="side_block">
+    <img src="{{image}}"/>
+    {{text|safe}}
+     </div>
+    """
         
-   class TextForm(forms.Form):
-       text = forms.CharField(widget=forms.Textarea)
-       image = forms.CharField()
+    class TextForm(forms.Form):
+        text = forms.CharField(widget=forms.Textarea)
+        image = forms.CharField()
         
-   class PromotionalImage(SidebarWidget):
-       admin_form = TextForm
-       template_text = TEMPLATE
+    class PromotionalImage(SidebarWidget):
+        admin_form = TextForm
+        template_text = TEMPLATE
         
-   # register the Widget
-   sidebar_widget = PromotionalImage('Promotional Image','Display a promotional image with text')
+    # register the Widget
+    sidebar_widget = PromotionalImage('Promotional Image','Display a promotional image with text')
 
 7. **Add a place for our sidebar in template**
 

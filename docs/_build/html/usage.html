@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Usage &mdash; django-sidebar v0.2.0 documentation</title>
+    <title>Usage example &mdash; django-sidebar v0.2.0 documentation</title>
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="usage">
-<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="usage-example">
+<h1>Usage example<a class="headerlink" href="#usage-example" title="Permalink to this headline">¶</a></h1>
 <ol class="arabic">
 <li><p class="first"><strong>Add &#8216;sidebar&#8217; into project INSTALLED_APPS settings</strong>:</p>
 <div class="highlight-python"><pre>#file: settings.py
@@ -103,9 +103,6 @@ sidebar_widgets/</pre>
 </li>
 <li><p class="first"><strong>Create the widget</strong></p>
 <p>To create the widget, you must register the widget in the <em>AVAILABLE_SIDEBAR_WIDGETS</em> settings (described in the step #5 above). <strong>Example :</strong></p>
-</li>
-</ol>
-<blockquote>
 <p>If your sidebar widget named <strong>promotional_image</strong>, create a file inside the <strong>sidebar_widgets</strong> directory and name it <strong>promotional_image.py</strong>.</p>
 <div class="highlight-python"><pre>sidebar_widgets/
 __init__.py
@@ -120,7 +117,7 @@ promotional_image.py</pre>
 <span class="s">&lt;div class=&quot;side_block&quot;&gt;</span>
 <span class="s">&lt;img src=&quot;{{image}}&quot;/&gt;</span>
 <span class="s">{{text|safe}}</span>
-<span class="s">&lt;/div&gt;</span>
+<span class="s"> &lt;/div&gt;</span>
 <span class="s">&quot;&quot;&quot;</span>
 
 <span class="k">class</span> <span class="nc">TextForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
@@ -135,8 +132,7 @@ promotional_image.py</pre>
 <span class="n">sidebar_widget</span> <span class="o">=</span> <span class="n">PromotionalImage</span><span class="p">(</span><span class="s">&#39;Promotional Image&#39;</span><span class="p">,</span><span class="s">&#39;Display a promotional image with text&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</blockquote>
-<ol class="arabic" start="7">
+</li>
 <li><p class="first"><strong>Add a place for our sidebar in template</strong></p>
 <p>Open your template file where the sidebar will be rendered, and make a simple call to the sidebar tag:</p>
 <div class="highlight-python"><pre>&lt;!-- this is your template file. eg. index.html --&gt;

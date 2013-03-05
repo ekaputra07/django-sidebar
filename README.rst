@@ -1,7 +1,9 @@
 Django Sidebar
 ==============
 
-Dynamic Sidebar creation for Django. Easily create and manage sidebar from Django Admin with drag and drop sidebar widget ordering.
+Django sidebar is a dynamic sidebar creation for Django.
+
+Easily create and manage sidebar from Django Admin with drag and drop interface and sidebar widget ordering.
 
 Requirement
 ------------
